@@ -41,6 +41,11 @@ const getAllRules = (declarations) => {
         }, {});
 };
 
+/**
+ * Transform a iteratable object into an array
+ * @param {object} sheets
+ * @return {[]}
+ */
 const toArray = (sheets) => {
     const list = [];
     for (let i = 0; i < sheets.length; i++) {
@@ -49,6 +54,11 @@ const toArray = (sheets) => {
     return list;
 };
 
+/**
+ * Check if string is a valid color value
+ * @param {string} strColor
+ * @return {boolean}
+ */
 const isColor = (strColor) => {
     const s = new Option().style;
     s.color = strColor;

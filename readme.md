@@ -21,3 +21,16 @@ and at the bottom you call
 ## Example 
 
 [Demo](https://faebeee.github.io/css-var-editor/index.html)
+
+
+## API
+
+    cssVarUi(keyFilterRegex?: RegExp, container?: Element, stylesheets: StyleSheet[] | StyleSheetList = document.styleSheets)
+
+
+`keyFilterRegex` you can filter all variables so only wanted vars appear in the editor
+
+`container` Define where the dat.gui instance should be appended
+
+`stylesheets` by default all documents stylesheet gets scanned. If you want only specific files to 
+be scanned, you can pass your own array here

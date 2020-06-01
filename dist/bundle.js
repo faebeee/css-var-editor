@@ -3011,6 +3011,12 @@ var cssVarEditor = (function () {
       return acc;
     }, {});
   };
+  /**
+   * Transform a iteratable object into an array
+   * @param {object} sheets
+   * @return {[]}
+   */
+
 
   var toArray = function toArray(sheets) {
     var list = [];
@@ -3021,6 +3027,12 @@ var cssVarEditor = (function () {
 
     return list;
   };
+  /**
+   * Check if string is a valid color value
+   * @param {string} strColor
+   * @return {boolean}
+   */
+
 
   var isColor = function isColor(strColor) {
     var s = new Option().style;
