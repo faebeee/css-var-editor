@@ -1,0 +1,29 @@
+:root {
+    --root-background-color: #333;
+    --root-text-color: #f7f7f7;
+    --root-title-color: #f7f7f7;
+    
+    --root-title-size: 34px;
+}
+
+
+body {
+    background: var(--root-background-color);
+    color: var(--root-text-color);
+    font-family: "Helvetica Neue";
+}
+
+.container {
+    max-width: 788px;
+    padding: 24px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--root-title-color);
+    font-size: var(--root-title-size);
+}
+
+p {
+
+}
