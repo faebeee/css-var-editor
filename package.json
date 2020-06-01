@@ -1,8 +1,8 @@
 {
     "name": "css-var-editor",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "A dat.gui editor which will detect all\nroot css variables of a site and presents them in the editor.\nFrom there you can preview you changes.",
+    "main": "dist/bundle.js",
     "scripts": {
         "build": "npx rollup -c rollup.config.js",
         "dev": "npx lite-server --baseDir='./'"
