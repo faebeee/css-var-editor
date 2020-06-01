@@ -1,6 +1,6 @@
 {
     "name": "css-var-editor",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A dat.gui editor which will detect all\nroot css variables of a site and presents them in the editor.\nFrom there you can preview you changes.",
     "main": "dist/bundle.min.js",
     "scripts": {
