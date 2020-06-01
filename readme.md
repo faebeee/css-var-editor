@@ -8,9 +8,9 @@ From there you can preview you changes.
 ## Install
 
 
-Add this to your index.htmlt
+Add this to your index.html
 
-    <script src="unpkg.com/@faebeee/css-var-editor@1.0.0"></script>
+    <script src="https://unpkg.com/css-var-editor@1.0.0"></script>
     
 and at the bottom you call
 
