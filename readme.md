@@ -10,7 +10,7 @@ From there you can preview you changes.
 
 Add this to your index.html
 
-    <script src="https://unpkg.com/css-var-editor@1.0.0"></script>
+    <script src="https://unpkg.com/css-var-editor"></script>
     
 and at the bottom you call
 
