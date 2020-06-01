@@ -17,3 +17,7 @@ and at the bottom you call
     <script>
         cssVarEditor();
     </script>
+
+## Example 
+
+[Demo](https://faebeee.github.io/css-var-editor/index.html)

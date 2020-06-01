@@ -11,7 +11,7 @@
         "type": "git",
         "url": "git+https://github.com/faebeee/css-var-editor.git"
     },
-    "author": "",
+    "author": "faebeee",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/faebeee/css-var-editor/issues"

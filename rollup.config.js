@@ -9,7 +9,7 @@ export default {
         file: 'dist/bundle.js',
         format: 'iife'
     },
-    input: 'index.js',
+    input: './src/index.js',
     plugins: [
         commonjs(),
         babel({
