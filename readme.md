@@ -22,6 +22,12 @@ and at the bottom you call
 
 [Demo](https://faebeee.github.io/css-var-editor/index.html)
 
+## Bookmark snippet
+
+    javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='https://unpkg.com/css-var-editor?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();
+    
+[Bookmark](javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='https://unpkg.com/css-var-editor?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();)
+
 
 ## API
 

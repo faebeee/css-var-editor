@@ -1,4 +1,4 @@
-var cssVarEditor = (function () {
+(function () {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -3041,14 +3041,13 @@ var cssVarEditor = (function () {
   };
   /**
    *
-   * @param {RegExp} keyFilterRegex
    * @param {Element | undefined}container
    * @param {StyleSheet[] | StyleSheetList}stylesheets
    */
 
 
-  function cssVarUi(keyFilterRegex, container) {
-    var stylesheets = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : document.styleSheets;
+  function cssVarUi(container) {
+    var stylesheets = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.styleSheets;
     var gui = new GUI$1();
     var result = toArray(stylesheets).reduce(function (acc, stylesheet) {
       try {
@@ -3057,14 +3056,9 @@ var cssVarEditor = (function () {
         return acc;
       }
     }, {});
-    Object.entries(result).filter(function (_ref) {
+    Object.entries(result).forEach(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 1),
           key = _ref2[0];
-
-      return keyFilterRegex ? keyFilterRegex.test(key) : true;
-    }).forEach(function (_ref3) {
-      var _ref4 = _slicedToArray(_ref3, 1),
-          key = _ref4[0];
 
       if (isColor(result[key])) {
         TYPES.color(gui, key, result);
@@ -3078,7 +3072,6 @@ var cssVarEditor = (function () {
       container.appendChild(gui.domElement);
     }
   }
-
-  return cssVarUi;
+  cssVarUi();
 
 }());

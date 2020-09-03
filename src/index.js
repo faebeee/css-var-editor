@@ -67,11 +67,10 @@ const isColor = (strColor) => {
 
 /**
  *
- * @param {RegExp} keyFilterRegex
  * @param {Element | undefined}container
  * @param {StyleSheet[] | StyleSheetList}stylesheets
  */
-export default function cssVarUi(keyFilterRegex, container, stylesheets = document.styleSheets) {
+function cssVarUi(container, stylesheets = document.styleSheets) {
     const gui = new dat.GUI();
 
     const result = toArray(stylesheets)
@@ -87,7 +86,6 @@ export default function cssVarUi(keyFilterRegex, container, stylesheets = docume
         }, {});
 
     Object.entries(result)
-        .filter(([key]) => keyFilterRegex ? keyFilterRegex.test(key) : true)
         .forEach(([key]) => {
             if (isColor(result[key])) {
                 TYPES.color(gui, key, result);
@@ -100,3 +98,5 @@ export default function cssVarUi(keyFilterRegex, container, stylesheets = docume
         container.appendChild(gui.domElement);
     }
 };
+
+cssVarUi();
