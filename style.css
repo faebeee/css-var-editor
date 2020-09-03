@@ -2,6 +2,7 @@
     --root-background-color: #333;
     --root-text-color: #f7f7f7;
     --root-title-color: #f7f7f7;
+    --root-link-color: #f285ff;
     
     --root-title-size: 34px;
 }
@@ -24,6 +25,6 @@ h1 {
     font-size: var(--root-title-size);
 }
 
-p {
-
+.link {
+    color: var(--root-link-color);
 }

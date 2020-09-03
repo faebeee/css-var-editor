@@ -2957,121 +2957,124 @@
   function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var folders = {
-    text: null,
-    colors: null
-  };
-  var TYPES = {
-    text: function text(gui, name, value) {
-      if (!folders.text) {
-        folders.text = gui.addFolder('Other');
-      }
 
-      var controller = folders.text.add(value, name);
-      controller.onChange(function (v) {
-        return document.documentElement.style.setProperty(name, v);
-      });
-    },
-    color: function color(gui, name, value) {
-      if (!folders.colors) {
-        folders.colors = gui.addFolder('Colors');
-      }
-
-      var controller = folders.colors.addColor(value, name);
-      controller.onChange(function (v) {
-        return document.documentElement.style.setProperty(name, v);
-      });
-    }
-  };
-  /**
-   * Get a list of all css rules which and filter for css vars
-   * @param {CSSRule[]} declarations
-   * @return {{[key: string]: string}}
-   */
-
-  var getAllRules = function getAllRules(declarations) {
-    return declarations.filter(function (d) {
-      return d.selectorText === ':root';
-    }).reduce(function (acc, declaration) {
-      var allVar = declaration.style.cssText.split(';');
-
-      for (var i = 0; i < allVar.length; i++) {
-        var _allVar$i$split$map = allVar[i].split(':').map(function (s) {
-          return s.trim();
-        }),
-            _allVar$i$split$map2 = _slicedToArray(_allVar$i$split$map, 2),
-            key = _allVar$i$split$map2[0],
-            value = _allVar$i$split$map2[1];
-
-        if (key !== '' && key.startsWith('--') && !value.includes('var(')) {
-          acc[key] = value;
+  (function () {
+    var folders = {
+      text: null,
+      colors: null
+    };
+    var TYPES = {
+      text: function text(gui, name, value) {
+        if (!folders.text) {
+          folders.text = gui.addFolder('Other');
         }
+
+        var controller = folders.text.add(value, name);
+        controller.onChange(function (v) {
+          return document.documentElement.style.setProperty(name, v);
+        });
+      },
+      color: function color(gui, name, value) {
+        if (!folders.colors) {
+          folders.colors = gui.addFolder('Colors');
+        }
+
+        var controller = folders.colors.addColor(value, name);
+        controller.onChange(function (v) {
+          return document.documentElement.style.setProperty(name, v);
+        });
       }
+    };
+    /**
+     * Get a list of all css rules which and filter for css vars
+     * @param {CSSRule[]} declarations
+     * @return {{[key: string]: string}}
+     */
 
-      return acc;
-    }, {});
-  };
-  /**
-   * Transform a iteratable object into an array
-   * @param {object} sheets
-   * @return {[]}
-   */
+    var getAllRules = function getAllRules(declarations) {
+      return declarations.filter(function (d) {
+        return d.selectorText === ':root';
+      }).reduce(function (acc, declaration) {
+        var allVar = declaration.style.cssText.split(';');
 
+        for (var i = 0; i < allVar.length; i++) {
+          var _allVar$i$split$map = allVar[i].split(':').map(function (s) {
+            return s.trim();
+          }),
+              _allVar$i$split$map2 = _slicedToArray(_allVar$i$split$map, 2),
+              key = _allVar$i$split$map2[0],
+              value = _allVar$i$split$map2[1];
 
-  var toArray = function toArray(sheets) {
-    var list = [];
+          if (key !== '' && key.startsWith('--') && !value.includes('var(')) {
+            acc[key] = value;
+          }
+        }
 
-    for (var i = 0; i < sheets.length; i++) {
-      list.push(sheets[i]);
-    }
-
-    return list;
-  };
-  /**
-   * Check if string is a valid color value
-   * @param {string} strColor
-   * @return {boolean}
-   */
-
-
-  var isColor = function isColor(strColor) {
-    var s = new Option().style;
-    s.color = strColor;
-    return s.color !== '';
-  };
-  /**
-   *
-   * @param {Element | undefined}container
-   * @param {StyleSheet[] | StyleSheetList}stylesheets
-   */
-
-
-  function cssVarUi(container) {
-    var stylesheets = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.styleSheets;
-    var gui = new GUI$1();
-    var result = toArray(stylesheets).reduce(function (acc, stylesheet) {
-      try {
-        return _objectSpread(_objectSpread({}, acc), getAllRules(toArray(stylesheet.cssRules)));
-      } catch (e) {
         return acc;
+      }, {});
+    };
+    /**
+     * Transform a iteratable object into an array
+     * @param {object} sheets
+     * @return {[]}
+     */
+
+
+    var toArray = function toArray(sheets) {
+      var list = [];
+
+      for (var i = 0; i < sheets.length; i++) {
+        list.push(sheets[i]);
       }
-    }, {});
-    Object.entries(result).forEach(function (_ref) {
-      var _ref2 = _slicedToArray(_ref, 1),
-          key = _ref2[0];
 
-      if (isColor(result[key])) {
-        TYPES.color(gui, key, result);
-        return;
+      return list;
+    };
+    /**
+     * Check if string is a valid color value
+     * @param {string} strColor
+     * @return {boolean}
+     */
+
+
+    var isColor = function isColor(strColor) {
+      var s = new Option().style;
+      s.color = strColor;
+      return s.color !== '';
+    };
+    /**
+     *
+     * @param {Element | undefined}container
+     * @param {StyleSheet[] | StyleSheetList}stylesheets
+     */
+
+
+    function cssVarUi(container) {
+      var stylesheets = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.styleSheets;
+      var gui = new GUI$1();
+      var result = toArray(stylesheets).reduce(function (acc, stylesheet) {
+        try {
+          return _objectSpread(_objectSpread({}, acc), getAllRules(toArray(stylesheet.cssRules)));
+        } catch (e) {
+          return acc;
+        }
+      }, {});
+      Object.entries(result).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 1),
+            key = _ref2[0];
+
+        if (isColor(result[key])) {
+          TYPES.color(gui, key, result);
+          return;
+        }
+
+        TYPES.text(gui, key, result);
+      });
+
+      if (container) {
+        container.appendChild(gui.domElement);
       }
-
-      TYPES.text(gui, key, result);
-    });
-
-    if (container) {
-      container.appendChild(gui.domElement);
     }
-  }
-  cssVarUi();
+    cssVarUi();
+  })();
 
 }());
