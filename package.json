@@ -18,13 +18,13 @@
     },
     "homepage": "https://github.com/faebeee/css-var-editor#readme",
     "devDependencies": {
-        "@babel/core": "^7.10.2",
+        "@babel/core": "^7.11.5",
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/plugin-transform-runtime": "^7.10.1",
-        "@babel/preset-env": "^7.10.2",
-        "@rollup/plugin-babel": "^5.0.2",
+        "@babel/plugin-transform-runtime": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
+        "@rollup/plugin-babel": "^5.2.0",
         "@rollup/plugin-commonjs": "^12.0.0",
-        "@rollup/plugin-node-resolve": "^8.0.0",
+        "@rollup/plugin-node-resolve": "^8.4.0",
         "dat.gui": "^0.7.7",
         "rollup-plugin-uglify": "^6.0.4"
     },
