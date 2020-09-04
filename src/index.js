@@ -23,6 +23,15 @@ import * as dat from 'dat.gui';
     };
 
     /**
+     * Check if the value references to another
+     * @param {string} value - CSS var value
+     * @return {Boolean}
+     */
+    const isForwardRef = (value) => value.includes('var(');
+    const isVarName = (key) => (key !== '' && key.startsWith('--'));
+
+
+    /**
      * Get a list of all css rules which and filter for css vars
      * @param {CSSRule[]} declarations
      * @return {{[key: string]: string}}
@@ -30,16 +39,20 @@ import * as dat from 'dat.gui';
     const getAllRules = (declarations) => {
         return declarations
             .filter(d => d.selectorText === ':root')
-            .reduce((acc, declaration) => {
-                const allVar = declaration.style.cssText.split(';');
-                for (var i = 0; i < allVar.length; i++) {
-                    const [key, value] = allVar[i].split(':').map(s => s.trim());
-                    if (key !== '' && key.startsWith('--') && !value.includes('var(')) {
-                        acc[key] = value;
-                    }
-                }
+            .map(declarations => declarations.style.cssText.split(';'))
+            .reduce((acc, declarations) => {
+                acc.push(...declarations);
                 return acc;
-            }, {});
+            }, [])
+            .map(declaration => declaration.split(':').map(s => s.trim()))
+
+            .filter(([key]) => !!key)
+            .filter(([key, value]) => !isForwardRef(value))
+            .filter(([key]) => isVarName(key))
+            .reduce((acc, [key, value]) => {
+                acc[key] = value;
+                return acc;
+            }, {})
     };
 
     /**
@@ -98,7 +111,8 @@ import * as dat from 'dat.gui';
         if (container) {
             container.appendChild(gui.domElement);
         }
-    };
+    }
 
     cssVarUi();
-})()
+})
+()

@@ -27,6 +27,7 @@ export default [
             name: 'cssVarEditor',
             file: 'dist/bundle.js',
             format: 'iife',
+            sourcemap: 'inline',
         },
         input: './src/index.js',
         plugins: [

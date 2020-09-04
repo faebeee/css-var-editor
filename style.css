@@ -3,6 +3,7 @@
     --root-text-color: #f7f7f7;
     --root-title-color: #f7f7f7;
     --root-link-color: #f285ff;
+    --root-link-color-forward-ref: var(--root-link-color);
     
     --root-title-size: 34px;
 }
