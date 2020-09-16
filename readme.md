@@ -12,11 +12,7 @@ Add this to your index.html
 
     <script src="https://unpkg.com/css-var-editor"></script>
     
-and at the bottom you call
-
-    <script>
-        cssVarEditor();
-    </script>
+And you are done. Enjoy =)
 
 ## Example 
 
@@ -27,16 +23,3 @@ and at the bottom you call
     javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='https://unpkg.com/css-var-editor?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();
     
 [Bookmark](javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='https://unpkg.com/css-var-editor?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();)
-
-
-## API
-
-    cssVarUi(keyFilterRegex?: RegExp, container?: Element, stylesheets: StyleSheet[] | StyleSheetList = document.styleSheets)
-
-
-`keyFilterRegex` you can filter all variables so only wanted vars appear in the editor
-
-`container` Define where the dat.gui instance should be appended
-
-`stylesheets` by default all documents stylesheet gets scanned. If you want only specific files to 
-be scanned, you can pass your own array here
