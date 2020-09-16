@@ -84,7 +84,7 @@ import * as dat from 'dat.gui';
      * @param {Element | undefined}container
      * @param {StyleSheet[] | StyleSheetList}stylesheets
      */
-    function cssVarUi(container, stylesheets = document.styleSheets) {
+    function cssVarUi(container = document.body, stylesheets = document.styleSheets) {
         const gui = new dat.GUI();
 
         const result = toArray(stylesheets)
@@ -109,7 +109,13 @@ import * as dat from 'dat.gui';
             });
 
         if (container) {
-            container.appendChild(gui.domElement);
+            const wrapper = document.createElement('div');
+            wrapper.style.position = 'absolute';
+            wrapper.style.zIndex = 999999999;
+            wrapper.style.top = 0;
+            wrapper.style.right = 0;
+            wrapper.appendChild(gui.domElement)
+            container.appendChild(wrapper);
         }
     }
 
